@@ -1,4 +1,4 @@
-package pokus;
+package lessons;
 
 import java.util.Stack;
 

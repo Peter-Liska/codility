@@ -27,6 +27,12 @@ class ThreePartsTest {
 		testString = "aaa";
 		Assertions.assertEquals(1, threeParts.solution(testString));
 
+		testString = "aba";
+		Assertions.assertEquals(0, threeParts.solution(testString));
+
+		testString = "babaab";
+		Assertions.assertEquals(2, threeParts.solution(testString));
+
 		testString = "abaa";
 		Assertions.assertEquals(2, threeParts.solution(testString));
 
@@ -42,6 +48,8 @@ class ThreePartsTest {
 		testString = "aaaaaaaaabbaaaaaaaaabbaaaaaaaaa";
 		Assertions.assertEquals(9, threeParts.solution(testString));
 
+		testString = "bbbaaaaaaaaabbaaaaaaaaabbaaaaaaaaabbb";
+		Assertions.assertEquals(9, threeParts.solution(testString));
 	}
 
 }

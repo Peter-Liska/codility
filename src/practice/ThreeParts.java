@@ -5,7 +5,7 @@ public class ThreeParts {
 	public int solution(String S) {
 		int sLen = S.length();
 
-		// special cases
+		// special cases (3 or less)
 		if (sLen < 3) return 0;
 		if (sLen == 3) {
 			if (S.charAt(0) == 'a') {
@@ -27,32 +27,32 @@ public class ThreeParts {
 		if (aCount % 3 > 0) return 0;
 
 		// other cases
-		// TODO: Try optimizing: Start loop from aPart (not 0) , and finish by sector2 (not sLen)
-		int aPart = aCount / 3;
 		boolean isSector1 = false;
 		boolean isSector2 = false;
 		boolean doneSector1 = false;
+		boolean doneSector2 = false;
+
+		int aPart = aCount / 3;
 		int bCount1 = 0;
 		int bCount2 = 0;
 		int actual = 0;
 
+		// TODO: Optimize: Try start loop from around aPart (not 0) + something like that at finish
 		for (int i = 0; i < sLen; i++) {
 			char c = S.charAt(i);
 			if (c == 'a') {
-				if (actual >= aPart) {
+				if (actual == aPart) {
 					actual = 0;
+					if (doneSector1) doneSector2 = true;
 					doneSector1 = true;
 				}
-				actual++;
 				isSector1 = false;
 				isSector2 = false;
+				actual++;
 			} else {
 				if (actual == aPart) {
-					if (doneSector1) {
-						isSector2 = true;
-					} else {
-						isSector1 = true;
-					}
+					if (!doneSector1) isSector1 = true;
+					if (!doneSector2 && doneSector1) isSector2 = true;
 					if (isSector1) bCount1++;
 					if (isSector2) bCount2++;
 				}

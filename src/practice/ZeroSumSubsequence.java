@@ -20,8 +20,6 @@ public class ZeroSumSubsequence {
 
 		int sum = 0;
 		for (int actual : inputArray) {
-			if (actual == 0) return true;
-
 			sum += actual;
 			if (hashSet.contains(sum)) return true; // If sum was there before, we have found a treasure.
 			hashSet.add(sum);

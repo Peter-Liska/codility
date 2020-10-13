@@ -1,8 +1,5 @@
 package practice;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -101,59 +98,4 @@ public class Synonyms {
 		return result;
 	}
 
-	public static void main(String[] args) {
-
-		try {
-			System.setProperty("line.separator", "\n");
-			PrintWriter writer = new PrintWriter("example_big.out", "UTF-8");
-			BufferedReader reader = new BufferedReader(new FileReader("example_big.in"));
-			Synonyms synonyms = new Synonyms();
-
-			String line = reader.readLine();
-			int testNum = Integer.parseInt(line);
-
-			for (int t = 0; t < testNum; t++) {
-
-				// Read dictionary
-				line = reader.readLine();
-				int dictionaryNum = Integer.parseInt(line);
-				String dictionary[][] = new String[dictionaryNum][2];
-				for (int d = 0; d < dictionaryNum; d++) {
-					line = reader.readLine();
-					String[] strArr = line.split(" ");
-					dictionary[d][0] = strArr[0];
-					dictionary[d][1] = strArr[1];
-				}
-
-				// Read tests
-				line = reader.readLine();
-				int problemsNum = Integer.parseInt(line);
-				String problems[][] = new String[problemsNum][2];
-				for (int p = 0; p < problemsNum; p++) {
-					line = reader.readLine();
-					String[] strArr = line.split(" ");
-					problems[p][0] = strArr[0];
-					problems[p][1] = strArr[1];
-				}
-
-				// Write
-				boolean[] results = synonyms.solution(dictionary, problems);
-
-				for (boolean res : results) {
-					if (res) {
-						writer.println("synonyms");
-					} else {
-						writer.println("different");
-					}
-				}
-
-			}
-
-			reader.close();
-			writer.close();
-		} catch (Exception ex) {
-			System.out.println("Problem when reading file!");
-		}
-
-	}
 }
